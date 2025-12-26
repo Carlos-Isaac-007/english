@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dicionário / Tradutor</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4799eb",
+              "background-light": "#f6f7f8",
+              "background-dark": "#010911",
+              "card-dark": "#0d1621",
+            },
+            fontFamily: { display: ["Lexend", "sans-serif"] },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .icon-filled {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="max-w-sm h-screen m-auto bg-background-dark dark:bg-background-light font-display text-slate-900 dark:text-slate-100 transition-colors duration-200"
+  >
+    <div
+      class="bg-background-light dark:bg-background-dark relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto overflow-x-hidden pb-32 shadow-2xl"
+    >
+      <header
+        class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 pt-4 pb-2 transition-colors duration-200"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <a
+            href="index.html"
+            class="flex size-10 shrink-0 items-center justify-center rounded-full active:bg-slate-200 dark:active:bg-slate-800 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[24px]"
+              >arrow_back_ios_new</span
+            >
+          </a>
+          <h2
+            class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10"
+          >
+            Tradutor
+          </h2>
+          <div class="size-10"></div>
+          <!-- Espaço vazio para centralizar o título -->
+        </div>
+
+        <!-- Campo de entrada -->
+        <div class="relative">
+          <textarea
+            id="input-text"
+            rows="4"
+            class="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-card-dark resize-none focus:ring-2 focus:ring-primary outline-none text-base"
+            placeholder="Digite o texto para traduzir..."
+          ></textarea>
+          <button
+            id="speak-input"
+            class="absolute bottom-3 right-3 text-primary hover:text-primary/80"
+          >
+            <span class="material-symbols-outlined">volume_up</span>
+          </button>
+        </div>
+
+        <!-- Seleção de idiomas -->
+        <div class="flex items-center gap-2 mt-4">
+          <select
+            id="source-lang"
+            class="flex-1 px-4 py-3 rounded-xl bg-white dark:bg-card-dark focus:ring-2 focus:ring-primary outline-none"
+          >
+            <option value="auto">Detectar idioma</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <!-- Adicione mais idiomas conforme necessário -->
+          </select>
+          <button
+            id="swap-langs"
+            class="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary/20"
+          >
+            <span class="material-symbols-outlined">swap_horiz</span>
+          </button>
+          <select
+            id="target-lang"
+            class="flex-1 px-4 py-3 rounded-xl bg-white dark:bg-card-dark focus:ring-2 focus:ring-primary outline-none"
+          >
+            <option value="pt">Português</option>
+            <option value="en" selected>English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
+
+        <!-- Botão Traduzir -->
+        <button
+          id="translate-btn"
+          class="mt-4 w-full py-4 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 active:scale-95 transition-transform"
+        >
+          Traduzir
+        </button>
+      </header>
+
+      <!-- Resultado da Tradução -->
+      <div id="result-container" class="hidden px-4 py-6">
+        <div
+          class="bg-white dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Tradução
+            </p>
+            <button id="copy-result" class="text-primary hover:text-primary/80">
+              <span class="material-symbols-outlined">content_copy</span>
+            </button>
+          </div>
+          <p
+            id="translated-text"
+            class="text-lg leading-relaxed text-slate-900 dark:text-white"
+          ></p>
+          <button
+            id="speak-output"
+            class="mt-4 flex items-center gap-2 text-primary"
+          >
+            <span class="material-symbols-outlined">volume_up</span>
+            <span>Ouvir tradução</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mensagem de erro ou loading -->
+      <div
+        id="status-message"
+        class="px-4 py-6 text-center text-slate-500"
+      ></div>
+
+      <!-- Navegação Inferior -->
+      <nav
+        class="fixed max-w-sm bottom-0 w-full mx-auto bg-white dark:bg-card-dark border-t border-slate-100 dark:border-slate-800 pb-safe pt-2 px-2 z-30"
+      >
+        <div class="flex justify-around items-center h-16">
+          <a
+            href="index.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+          </a>
+          <a
+            href="vocabulary.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">book_2</span>
+            <span class="text-[10px] font-medium">Vocabulary</span>
+          </a>
+          <div class="relative w-full flex justify-center">
+            <a
+              href="quiz.html"
+              class="absolute -top-10 flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 border-4 border-background-light dark:border-background-dark active:scale-95 transition-transform"
+            >
+              <span class="material-symbols-outlined text-[28px]"
+                >sports_esports</span
+              >
+            </a>
+            <span class="text-[10px] font-medium text-slate-400 mt-8"
+              >Practice</span
+            >
+          </div>
+          <a
+            href="translate.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-primary"
+          >
+            <span class="material-symbols-outlined icon-filled">translate</span>
+            <span class="text-[10px] font-medium">Traduzir</span>
+          </a>
+          <a
+            href="dialogs.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">communication</span>
+            <span class="text-[10px] font-medium">Diálogos</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <script src="js/translate.js"></script>
+  </body>
+</html>

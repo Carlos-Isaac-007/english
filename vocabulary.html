@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Vocabulary</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config" src="js/tailwind.config.js"></script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .icon-filled {
+        font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="max-w-sm h-screen m-auto bg-background-dark dark:bg-background-light font-display text-slate-900 dark:text-slate-100 transition-colors duration-200"
+  >
+    <div
+      class="bg-background-light dark:bg-background-dark relative flex h-full w-full flex-col mx-auto overflow-x-hidden no-scrollbar pb-32 shadow-2xl"
+    >
+      <header
+        class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-4 pt-4 pb-2 transition-colors duration-200"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <a
+            href="index.html"
+            class="flex size-10 shrink-0 items-center justify-center rounded-full active:bg-slate-200 dark:active:bg-slate-800 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[24px]"
+              >arrow_back_ios_new</span
+            >
+          </a>
+          <h2
+            class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10"
+          >
+            My Vocabulary
+          </h2>
+          <button
+            id="add-word-btn"
+            class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-lg active:scale-95 transition-transform"
+          >
+            <span class="material-symbols-outlined text-xl">add</span>
+          </button>
+        </div>
+        <div class="relative w-full group">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <span
+              class="material-symbols-outlined text-slate-400 dark:text-slate-500"
+              >search</span
+            >
+          </div>
+          <input
+            id="search-input"
+            class="block w-full p-3.5 pl-10 text-sm text-slate-900 border-none rounded-xl bg-white dark:bg-card-dark focus:ring-2 focus:ring-primary placeholder-slate-400 dark:text-white dark:placeholder-slate-500 shadow-sm transition-all"
+            placeholder="Search for a word..."
+            type="text"
+          />
+        </div>
+      </header>
+
+      <!-- Filtros -->
+      <div
+        class="sticky top-[120px] z-10 w-full bg-background-light dark:bg-background-dark pb-2 pt-2 px-4 transition-colors duration-200"
+      >
+        <div
+          id="category-filters"
+          class="flex gap-2 overflow-x-auto no-scrollbar pb-1"
+        ></div>
+      </div>
+
+      <!-- Lista -->
+      <div id="vocabulary-list" class="px-4 py-2 space-y-3"></div>
+
+      <!-- Modal Adicionar -->
+      <div id="add-modal" class="hidden fixed inset-0 z-50">
+        <!-- Fundo com blur -->
+        <div class="absolute flex inset-0 bg-black/50  backdrop-blur-sm"></div>
+        <div
+          class="fixed bottom-0 left-0 right-0 max-w-sm mx-auto w-full bg-white dark:bg-card-dark rounded-t-3xl p-6 shadow-2xl animate-in slide-in-from-bottom duration-300 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold">Add New Word</h3>
+            <button
+              id="close-modal"
+              class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <form id="add-word-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">English Word</label>
+              <input
+                id="english-input"
+                type="text"
+                required
+                placeholder="e.g. Beautiful"
+                class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2"
+                >Portuguese Translation</label
+              >
+              <input
+                id="portuguese-input"
+                type="text"
+                required
+                placeholder="e.g. Bonito / Linda"
+                class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Category</label>
+              <select
+                id="category-select"
+                class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 focus:ring-2 focus:ring-primary outline-none"
+              ></select>
+            </div>
+            <button
+              type="submit"
+              class="w-full py-4 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 active:scale-95 transition-transform"
+            >
+              Add to Vocabulary
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Navegação Inferior -->
+      <nav
+        class="fixed max-w-sm bottom-0 w-full mx-auto bg-white dark:bg-card-dark border-t border-slate-100 dark:border-slate-800 pb-safe pt-2 px-2 z-30"
+      >
+        <div class="flex justify-around items-center h-16">
+          <a
+            href="index.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-medium">Home</span>
+          </a>
+          <a
+            href="vocabulary.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-primary"
+          >
+            <span class="material-symbols-outlined icon-filled">book_2</span>
+            <span class="text-[10px] font-medium">Vocabulary</span>
+          </a>
+          <div class="relative w-full flex justify-center">
+            <a
+              href="quiz.html"
+              class="absolute -top-10 flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 border-4 border-background-light dark:border-background-dark transform active:scale-95 transition-transform"
+            >
+              <span class="material-symbols-outlined text-[28px]"
+                >sports_esports</span
+              >
+            </a>
+            <span class="text-[10px] font-medium text-slate-400 mt-8"
+              >Practice</span
+            >
+          </div>
+          <a
+            href="translate.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">translate</span>
+            <span class="text-[10px] font-medium">Traduzir</span>
+          </a>
+          <a
+            href="dialogs.html"
+            class="flex flex-col items-center justify-center w-full gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">communication</span>
+            <span class="text-[10px] font-medium">Diálogos</span>
+          </a>
+        </div>
+        <div class="h-4 w-full"></div>
+      </nav>
+    </div>
+
+    <script src="js/vocabulary.js"></script>
+  </body>
+</html>

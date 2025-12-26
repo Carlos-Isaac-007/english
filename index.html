@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bem-vindo ao App English</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+     <script id="tailwind-config" src="js/tailwind.config.js"></script>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="max-w-sm h-screen m-auto bg-background-dark dark:bg-background-light font-display text-[#111417] dark:text-white overflow-x-hidden"
+  >
+    <div
+      class="bg-background-light dark:bg-background-dark relative flex min-h-screen h-full w-full flex-col group/design-root"
+    >
+      <div
+        class="sticky top-0 z-10 flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-gray-200 dark:border-gray-800"
+      >
+        <div
+          class="text-primary flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10"
+        >
+          <span class="material-symbols-outlined text-[24px]">menu_book</span>
+        </div>
+        <h2
+          class="text-[#111417] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-left pl-2"
+        >
+          English
+        </h2>
+      </div>
+      <div class="flex flex-col items-center justify-center pt-8 pb-4">
+        <h1
+          class="text-[#111417] dark:text-white tracking-tight text-[32px] font-bold leading-tight px-4 text-center"
+        >
+          Bem-vindo ao App English
+        </h1>
+        <p
+          class="text-[#647587] dark:text-gray-400 text-base font-normal leading-normal pb-3 pt-2 px-6 text-center max-w-md"
+        >
+          Pronto para melhorar seu inglês hoje? Domine o básico em minutos.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4 p-4 w-full max-w-lg mx-auto">
+        <!-- Opção 1: Vocabulário -->
+        <a
+          href="vocabulary.html"
+          class="group block transition-transform active:scale-[0.98]"
+        >
+          <div
+            class="flex items-center justify-between gap-4 rounded-xl bg-white dark:bg-[#1a222d] p-4 shadow-sm border border-transparent hover:border-primary/20 dark:border-gray-800"
+          >
+            <div class="flex flex-col gap-1 flex-[2_2_0px]">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >school</span
+                >
+                <p
+                  class="text-[#111417] dark:text-white text-lg font-bold leading-tight"
+                >
+                  Vocabulário
+                </p>
+              </div>
+              <p
+                class="text-[#647587] dark:text-gray-400 text-sm font-normal leading-normal pl-7"
+              >
+                Construa seu banco de palavras
+              </p>
+            </div>
+            <div
+              class="h-20 w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 bg-primary/10"
+              data-alt="Colorful abstract alphabet blocks pattern"
+              style="background-image: url('img/voc.png')"
+            ></div>
+          </div>
+        </a>
+
+        <!-- Opção 2: Teste de Conhecimento -->
+        <a
+          href="quiz.html"
+          class="group block transition-transform active:scale-[0.98]"
+        >
+          <div
+            class="flex items-center justify-between gap-4 rounded-xl bg-white dark:bg-[#1a222d] p-4 shadow-sm border border-transparent hover:border-primary/20 dark:border-gray-800"
+          >
+            <div class="flex flex-col gap-1 flex-[2_2_0px]">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >quiz</span
+                >
+                <p
+                  class="text-[#111417] dark:text-white text-lg font-bold leading-tight"
+                >
+                  Teste de Conhecimento
+                </p>
+              </div>
+              <p
+                class="text-[#647587] dark:text-gray-400 text-sm font-normal leading-normal pl-7"
+              >
+                Desafie a si mesmo
+              </p>
+            </div>
+            <div
+              class="h-20 w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 bg-primary/10"
+              data-alt="Pencil checking boxes on paper checklist"
+              style="background-image: url('img/quiz.png')"
+            ></div>
+          </div>
+        </a>
+
+        <!-- Opção 3: Diálogos -->
+        <a
+          href="dialogs.html"
+          class="group block transition-transform active:scale-[0.98]"
+        >
+          <div
+            class="flex items-center justify-between gap-4 rounded-xl bg-white dark:bg-[#1a222d] p-4 shadow-sm border border-transparent hover:border-primary/20 dark:border-gray-800"
+          >
+            <div class="flex flex-col gap-1 flex-[2_2_0px]">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >forum</span
+                >
+                <p
+                  class="text-[#111417] dark:text-white text-lg font-bold leading-tight"
+                >
+                  Diálogos
+                </p>
+              </div>
+              <p
+                class="text-[#647587] dark:text-gray-400 text-sm font-normal leading-normal pl-7"
+              >
+                Conversas do dia a dia
+              </p>
+            </div>
+            <div
+              class="h-20 w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 bg-primary/10"
+              data-alt="People talking with speech bubbles illustration"
+              style="background-image: url('img/talk.png')"
+            ></div>
+          </div>
+        </a>
+
+        <a
+          href="translate.html"
+          class="group block transition-transform active:scale-[0.98]"
+        >
+          <div
+            class="flex items-center justify-between gap-4 rounded-xl bg-white dark:bg-[#1a222d] p-4 shadow-sm border border-transparent hover:border-primary/20 dark:border-gray-800"
+          >
+            <div class="flex flex-col gap-1 flex-[2_2_0px]">
+              <div class="flex items-center gap-2 mb-1">
+                <span
+                  class="material-symbols-outlined text-primary text-[20px]"
+                >
+                  translate
+                </span>
+                <p
+                  class="text-[#111417] dark:text-white text-lg font-bold leading-tight"
+                >
+                  Tradução
+                </p>
+              </div>
+              <p
+                class="text-[#647587] dark:text-gray-400 text-sm font-normal leading-normal pl-7"
+              >
+                Traduza textos em múltiplos idiomas
+              </p>
+            </div>
+            <div
+              class="h-20 w-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 bg-primary/10"
+              data-alt="Ilustração de tradução com globos e letras"
+              style="
+                background-image: url('img/translate.png');
+              "
+            ></div>
+          </div>
+        </a>
+      </div>
+      <div class="flex-1"></div>
+      <div class="p-4 py-8 flex justify-center items-center">
+        <p class="text-[#9aaebf] dark:text-gray-600 text-xs font-medium">
+          © 2025 App English. Todos os direitos reservados.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
